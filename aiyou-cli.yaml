@@ -1,0 +1,10 @@
+# Configuration AI.You CLI - Example
+debug: false
+model: "az-gpt-4o"
+stream: true
+temperature: 1.0
+retry: 0
+#prompt: "Instructions système"
+message: ""
+#token: "REPLACE WITH YOUR TOKEN"  # Replace with your API token
+#assistantId: "your-assistant-id"  # Optional: Replace with your assistant ID
