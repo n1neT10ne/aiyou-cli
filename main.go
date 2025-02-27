@@ -34,7 +34,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const version = "v0.2.0"
+const version = "v1.1.0"
 
 var (
 	// Configuration globale

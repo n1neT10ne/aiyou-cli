@@ -27,6 +27,11 @@ The current focus is on enhancing the usability and flexibility of the CLI by im
 - Updated validation to accept either `-m/--message` or `-i/--stdin`
 - Updated documentation in README.md
 
+### Version Management
+- Updated version from v0.1.0 to v1.1.0 to align with GitHub releases
+- Created versioning.md to document the versioning and release process
+- Implemented proper semantic versioning guidelines
+
 ### Documentation
 - Updated README.md with new features
 - Updated TODO.md to mark completed items
