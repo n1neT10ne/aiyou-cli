@@ -1,0 +1,76 @@
+# aiyou-cli Project Rules and Patterns
+
+## Code Style and Conventions
+
+1. **Go Formatting**
+   - Always use `gofmt` or equivalent formatting
+   - Follow standard Go naming conventions (camelCase for private, PascalCase for exported)
+   - Use descriptive variable names in French or English
+
+2. **Error Handling**
+   - Use `fmt.Errorf` with `%w` for wrapping errors
+   - Return errors rather than handling them internally when appropriate
+   - Provide context in error messages
+
+3. **Comments**
+   - Comments in French are acceptable and preferred for internal documentation
+   - Public-facing documentation should be in English
+   - Use complete sentences for comments
+
+4. **Configuration**
+   - Follow the established precedence: CLI args > Environment vars > Config file
+   - Document all configuration options in README.md
+   - Provide sensible defaults where possible
+
+## Project Structure
+
+1. **File Organization**
+   - Keep main.go focused on CLI setup and execution flow
+   - Separate configuration logic in config.go
+   - Use scripts/ directory for build and utility scripts
+
+2. **Dependencies**
+   - Minimize external dependencies
+   - Prefer standard library solutions when practical
+   - Document all dependencies in go.mod
+
+## Development Workflow
+
+1. **Feature Implementation**
+   - Update TODO.md when starting and completing features
+   - Document new features in README.md
+   - Update example configuration when relevant
+
+2. **Testing**
+   - Manual testing is currently the primary method
+   - Test on both Windows and Linux when possible
+   - Verify all configuration methods (CLI, env vars, config file)
+
+3. **Release Process**
+   - Update version in main.go
+   - Commit changes with descriptive message
+   - Create and push tag to trigger GitHub Actions
+
+## User Experience Patterns
+
+1. **Command Structure**
+   - Use short flags (-k) and long flags (--token) consistently
+   - Group related flags together in help output
+   - Provide clear error messages for missing required parameters
+
+2. **Documentation**
+   - Include examples for all features
+   - Document both basic and advanced usage
+   - Keep README.md up to date with all features
+
+## Memory Bank Maintenance
+
+1. **Update Frequency**
+   - Update activeContext.md and progress.md after implementing new features
+   - Review and update other files as needed when architecture changes
+   - Create new context files for major new features or components
+
+2. **Documentation Style**
+   - Use Markdown formatting consistently
+   - Include diagrams where helpful
+   - Organize information in clear sections with headings

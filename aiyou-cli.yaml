@@ -1,10 +1,19 @@
 # Configuration AI.You CLI - Example
 debug: false
 model: "az-gpt-4o"
-stream: true
+stream: false
 temperature: 1.0
 retry: 0
-#prompt: "Instructions système"
-message: ""
-#token: "REPLACE WITH YOUR TOKEN"  # Replace with your API token
+token: "xx"  # Replace with your API token
 #assistantId: "your-assistant-id"  # Optional: Replace with your assistant ID
+# message: ""
+
+# Exemple de prompt système sur une seule ligne
+# prompt: "Vous êtes un assistant IA."
+
+# Exemple de prompt système multi-ligne (utilisant le style littéral YAML avec |)
+prompt: |
+  sdfs
+  ssdfsd
+
+

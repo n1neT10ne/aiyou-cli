@@ -26,6 +26,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"time"
 
@@ -50,6 +51,7 @@ var (
 	stream      bool
 	assistantID string
 	listModels  bool
+	useStdin    bool
 )
 
 // rootCmd représente la commande de base
@@ -126,6 +128,15 @@ var rootCmd = &cobra.Command{
 			fmt.Fprintf(os.Stderr, "[DEBUG] Final config after merge: stream=%v\n", cfg.Stream)
 		}
 
+		// Lire depuis stdin si le flag est activé
+		if useStdin {
+			stdinData, err := io.ReadAll(os.Stdin)
+			if err != nil {
+				return fmt.Errorf("error reading from stdin: %w", err)
+			}
+			cfg.Message = string(stdinData)
+		}
+
 		// Si --list-models est utilisé, on ignore les autres paramètres
 		if listModels {
 			if cfg.Token == "" {
@@ -148,7 +159,7 @@ var rootCmd = &cobra.Command{
 		// Validation des paramètres requis pour le mode normal
 		var errors []string
 		if cfg.Message == "" {
-			errors = append(errors, "message is required (-m or --message)")
+			errors = append(errors, "message is required (via -m/--message flag or -i/--stdin)")
 		}
 		if cfg.Token == "" {
 			errors = append(errors, "token is required (via -k/--token flag, AIYOU_CLI_TOKEN environment variable, or token field in config file)")
@@ -222,6 +233,7 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&stream, "stream", "s", false, "Enable streaming mode (default : false)")
 	rootCmd.PersistentFlags().StringVarP(&assistantID, "assistant", "a", "", "Assistant ID")
 	rootCmd.PersistentFlags().BoolVarP(&listModels, "list-models", "L", false, "List available models")
+	rootCmd.PersistentFlags().BoolVarP(&useStdin, "stdin", "i", false, "Read message from standard input")
 }
 
 func main() {

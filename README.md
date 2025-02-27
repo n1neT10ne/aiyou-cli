@@ -20,7 +20,8 @@ A minimalist and efficient command-line client for interacting with the AI.You A
 
 ## 📝 TODO
 
-* [ ] Add standard input support for message input to enable command piping to the binary
+* [x] Add standard input support for message input to enable command piping to the binary
+* [x] Support multi-line system prompts in the YAML configuration file
 
 ## 📦 Installation
 
@@ -118,7 +119,13 @@ Alternatively, you can use the configuration file or command line flag for persi
 debug: false
 temperature: 0.7
 retry: 3
+# Single-line prompt
 prompt: "System instructions"
+# OR multi-line prompt (using YAML's literal style with |)
+prompt: |
+  You are an AI assistant.
+  Please respond in a concise manner.
+  Use examples when relevant.
 token: "your-token"
 model: "model-name"
 stream: true
@@ -133,6 +140,11 @@ aiyou-cli --list-models -k "your-token"
 
 # Send a simple message
 aiyou-cli -k "your-token" -m "Your message" -M "model-name"
+
+# Read message from standard input
+echo "Your message" | aiyou-cli -k "your-token" -i -M "model-name"
+# OR
+cat file.txt | aiyou-cli -k "your-token" -i -M "model-name"
 
 # With advanced options
 aiyou-cli \
@@ -160,6 +172,7 @@ Flags:
   -s, --stream       Enable streaming mode (default: false)
   -a, --assistant    Assistant ID
   -L, --list-models  List available models
+  -i, --stdin        Read message from standard input
   -h, --help         Display help
 ```
 
